@@ -1,0 +1,19 @@
+---
+- hosts: f5
+  name: F5 LTM
+  connection: local
+ 
+  tasks:
+   - name: Add node
+     bigip_node:
+      server: "{{ inventory_hostname }}"
+      user: "admin"
+      password: "admin"
+      state: "present"
+      host: "192.168.1.7"
+      name: "r192_7"
+      validate_certs: False
+     register: result
+   
+   - debug:
+       var: result
